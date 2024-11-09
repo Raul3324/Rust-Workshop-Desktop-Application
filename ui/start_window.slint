@@ -1,46 +1,280 @@
 import { Button, TextEdit, GridBox } from "std-widgets.slint";
 
+global bsize {
+    out property <length> width: 120px;
+    out property <length> height: 60px;
+}
+
+export global MainText {
+    in-out property<string> textarea: "";
+}
 export component AppWindow inherits Window {
     title: "Calculator";
-    in-out property<string> textarea: ""; // Proprietate pentru afișarea textului în zona de text
+    // in-out property<string> textarea: ""; // Proprietate pentru afișarea textului în zona de text
     callback add_to_text_area(string, string); // Callback pentru adăugarea textului în zona de text
+    width: 600px;
+    height: 380px;
 
     GridLayout {
-
         // TASK: Creează un TextEdit pentru zona de text a calculatorului.
         // HINT: Setează lățimea la 600px și înălțimea la 200px.
-        text_box := TextEdit {
-            // TODO
-            text: textarea; // Leagă `textarea` la textul afișat în acest `TextEdit`
+        Row{
+            text_box := TextEdit {
+                width: 600px;
+                height: 200px;
+                read-only: true;
+                // TODO
+                text: MainText.textarea; // Leagă `textarea` la textul afișat în acest `TextEdit`
+            }
         }
-
         // TASK: Adaugă primul rând de butoane pentru cifre și operatori într-un nou GridLayout.
         // HINT: Fiecare buton va fi într-un `Rectangle` pentru a avea dimensiuni și fundal personalizate. Folosește `Button` pentru acțiune.
-
-        GridLayout {
-
-            row: 1;
-
+        Row{
+            GridLayout {
+                Rectangle {
+                    width: bsize.width;
+                    height: bsize.height;
+                    Text {
+                     text: "1";
+                    }
+                     Button {
+                        width: bsize.width;
+                        height: bsize.height;
+                        // TODO
+                        // Callback pentru adăugarea cifrei "1" în zona de text și actualizarea acesteia
+                         clicked => { add_to_text_area(MainText.textarea, "1") }
+                     }
+                 }
+     
+                 // TASK: Creează butonul pentru cifra "2", urmând aceleași instrucțiuni ca pentru butonul "1".
+                 Rectangle {
+                    width: bsize.width;
+                    height: bsize.height;
+                     Text {
+                         text: "2";
+                     }
+                      Button {
+                         // TODO
+                         width: bsize.width;
+                         height: bsize.height;
+                          clicked => { add_to_text_area(text-box.text, "2") }
+                      }
+                  }
+     
+                 // TASK: Creează butonul pentru cifra "3".
+                 Rectangle {
+                    width: bsize.width;
+                    height: bsize.height;
+                     Text {
+                         text: "3";
+                     }
+                      Button {
+                        width: bsize.width;
+                        height: bsize.height;
+                         // TODO
+                          clicked => { add_to_text_area(text-box.text, "3") }
+                      }
+                  }
+     
+                 // TASK: Creează butonul pentru operatorul "+".
+                 Rectangle {
+                    width: bsize.width;
+                    height: bsize.height;
+                     Text {
+                         text: "+";
+                     }
+                      Button {
+                         // TODO
+                         width: bsize.width;
+                         height: bsize.height;
+                          clicked => { add_to_text_area(text-box.text, "+") }
+                      }
+                  }
+                  Rectangle {
+                    width: bsize.width;
+                    height: bsize.height;
+                    Text {
+                        text: "-";
+                    }
+                     Button {
+                        // TODO
+                        width: bsize.width;
+                        height: bsize.height;
+                         clicked => { add_to_text_area(text-box.text, "-") }
+                     }
+                 }
             // TASK: Creează butonul pentru cifra "1".
             // HINT: Folosește un `Rectangle` pentru dimensiuni și un `Text` pentru afișarea cifrei. Folosește `Button` pentru a înregistra acțiunea.
-            Rectangle {
-               // TODO
-                Button {
-                   // TODO
-
-                   // Callback pentru adăugarea cifrei "1" în zona de text și actualizarea acesteia
-                    clicked => { add_to_text_area(text-box.text, "1") }
-                }
-            }
-
-            // TASK: Creează butonul pentru cifra "2", urmând aceleași instrucțiuni ca pentru butonul "1".
-
-            // TASK: Creează butonul pentru cifra "3".
-
-            // TASK: Creează butonul pentru operatorul "+".
-        }
+            
 
         // TASK: Adaugă alte rânduri pentru cifrele și operatorii rămași, similar cu primul rând.
         // HINT: Creează noi `GridLayout` și adaugă butoane pentru cifrele "4" până la "9", operatorii "*", "-", "/", ".", "Clear" și "=".
+
+
+
+            Rectangle {
+                width: bsize.width;
+                height: bsize.height;
+                row: 1;
+                Text {
+                    text: "4";
+                }
+                Button {
+                    // TODO
+                    width: bsize.width;
+                    height: bsize.height;
+                    clicked => { add_to_text_area(text-box.text, "4") }
+                }
+            }
+            Rectangle {
+                width: bsize.width;
+                height: bsize.height;
+                Text {
+                    text: "5";
+                }
+                Button {
+                    // TODO
+                    width: bsize.width;
+                    height: bsize.height;
+                    clicked => { add_to_text_area(text-box.text, "5") }
+                }
+            }
+            Rectangle {
+                width: bsize.width;
+                height: bsize.height;
+                Text {
+                    text: "6";
+                }
+                Button {
+                    // TODO
+                    width: bsize.width;
+                    height: bsize.height;
+                    clicked => { add_to_text_area(text-box.text, "6") }
+                }
+            }
+            Rectangle {
+                Text {
+                    text: "*";
+                }
+                Button {
+                    // TODO
+                    width: bsize.width;
+                    height: bsize.height;
+                    clicked => { add_to_text_area(text-box.text, "*") }
+                }
+            }
+            Rectangle {
+                width: bsize.width;
+                height: bsize.height;
+                Text {
+                    text: "/";
+                }
+                Button {
+                    // TODO
+                    width: bsize.width;
+                    height: bsize.height;
+                    clicked => { add_to_text_area(text-box.text, "/") }
+                }
+            }
+
+
+
+            Rectangle {
+                row: 2;
+                Text {
+                    text: "7";
+                }
+                Button {
+                    // TODO
+                    width: bsize.width;
+                    height: bsize.height;
+                    clicked => { add_to_text_area(text-box.text, "7") }
+                }
+            }
+            Rectangle {
+                width: bsize.width;
+                height: bsize.height;
+                Text {
+                    text: "8";
+                }
+                Button {
+                    width: bsize.width;
+                    height: bsize.height;
+                    // TODO
+                    clicked => { add_to_text_area(text-box.text, "8") }
+                }
+            }
+            Rectangle {
+                width: bsize.width;
+                height: bsize.height;
+                Text {
+                    text: "9";
+                }
+                Button {
+                    // TODO
+                    width: bsize.width;
+                    height: bsize.height;
+                    clicked => { add_to_text_area(text-box.text, "9") }
+                }
+            }
+            Rectangle {
+                width: bsize.width;
+                height: bsize.height;
+                Text {
+                    text: ".";
+                }
+                Button {
+                    width: bsize.width;
+                    height: bsize.height;
+                    // TODO
+                    clicked => { add_to_text_area(text-box.text, ".") }
+                }
+            }
+            Rectangle {
+                width: bsize.width;
+                height: bsize.height;
+                Text {
+                    text: "Clear";
+                }
+                Button {
+                    // TODO
+                    width: bsize.width;
+                    height: bsize.height;
+                    clicked => { add_to_text_area(text-box.text, "Clear") }
+                }
+            }
+        
+        
+
+            Rectangle {
+                width: bsize.width;
+                height: bsize.height;
+                row: 3;
+                Text {
+                    text: "0";
+                }
+                 Button {
+                    // TODO
+                    width: bsize.width;
+                    height: bsize.height;
+                     clicked => { add_to_text_area(text-box.text, "0") }
+                 }
+             }
+             Rectangle {
+                width: bsize.width;
+                height: bsize.height;
+                Text {
+                    text: "=";
+                }
+                 Button {
+                    width: bsize.width;
+                    height: bsize.height;
+                    // TODO
+                     clicked => { add_to_text_area(text-box.text, "=") }
+                 }
+             }
+
     }
+}
+}
 }
